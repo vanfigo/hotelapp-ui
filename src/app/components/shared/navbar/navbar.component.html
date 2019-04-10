@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light animated fadeIn">
+  <a class="navbar-brand" href="#">
+    <img src="https://png.icons8.com/office/skyscrapers/32" alt="">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <ul class="navbar-nav" *ngIf="auth.user">
+      <li class="nav-item mx-md-2">
+        <button type="button" class="btn btn-block btn-outline-secondary"
+                [ngClass]="{'p-0': auth.user.photo}"
+                [routerLink]="['/profile', auth.user.uid]">
+          <img src="https://png.icons8.com/cotton/business-contact/20" alt="">
+          <small class="text-monospace mx-2">{{auth.user.email}}</small>
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="btn btn-block btn-outline-danger" type="button" (click)="logout()">
+          <img src="https://png.icons8.com/office/shutdown/24" alt="">
+        </button>
+      </li>
+    </ul>
+  </div>
+</nav>

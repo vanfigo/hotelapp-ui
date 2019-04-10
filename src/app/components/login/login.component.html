@@ -1,0 +1,21 @@
+<div class="bg animated fadeIn">
+  <div class="container">
+    <div class="row justify-content-end">
+      <div class="col-md-4">
+        <form (ngSubmit)="login()" #form="ngForm" class="bg-light shadow-sm border rounded mt-5 p-3">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter email" required
+                    name="email" #email="ngModel" [(ngModel)]="user.email">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter password" required
+                    name="password" #password="ngModel" [(ngModel)]="user.password">
+          </div>
+          <button type="submit" class="btn btn-primary btn-block" [disabled]="form.invalid">Log In</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
