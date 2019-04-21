@@ -1,0 +1,24 @@
+<div class="row my-2">
+  <button type="button" class="btn btn-success" [routerLink]="['add']">
+    <fa-icon [icon]="faPlusCircle"></fa-icon> Add a bed</button>
+</div>
+<div class="row">
+  <div class="card-deck">
+    <div class="card bed-card animated fadeIn shadow" *ngFor="let bed of beds">
+      <div class="card-header bg-dark text-light">
+        {{bed.name}}
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">People: <span class="badge badge-warning">{{bed.people}}</span></li>
+        <li class="list-group-item">Width: <span class="badge badge-warning">{{bed.width}} cm</span></li>
+        <li class="list-group-item">Height: <span class="badge badge-warning">{{bed.height}} cm</span></li>
+      </ul>
+      <div class="card-footer text-muted justify-content-end d-flex">
+        <button type="button" class="btn btn-warning btn-sm" [routerLink]="['edit', bed.id]">
+          <fa-icon [icon]="faPencilAlt"></fa-icon> Edit</button>
+        <button type="button" class="btn btn-outline-danger btn-sm ml-2" (click)="delete(bed.id)">
+          <fa-icon [icon]="faTrash"></fa-icon> Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

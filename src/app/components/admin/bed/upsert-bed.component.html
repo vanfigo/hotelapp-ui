@@ -1,0 +1,30 @@
+<div class="row justify-content-center" *ngIf="bed">
+  <div class="col-md-4">
+    <form (ngSubmit)="upsert()" #form="ngForm" class="shadow-sm border rounded p-3 m-2">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter name" required
+                name="name" #name="ngModel" [(ngModel)]="bed.name">
+      </div>
+      <div class="form-group">
+        <label for="people">People</label>
+        <input type="number" class="form-control" id="people" placeholder="Enter size of the bed" required
+                name="people" #people="ngModel" [(ngModel)]="bed.people">
+      </div>
+      <div class="form-group">
+        <label for="width">Width</label>
+        <input type="number" class="form-control" id="width" placeholder="Enter width of the bed" required
+                name="width" #width="ngModel" [(ngModel)]="bed.width">
+      </div>
+      <div class="form-group">
+        <label for="height">Height</label>
+        <input type="number" class="form-control" id="height" placeholder="Enter height of the bed" required
+                name="height" #height="ngModel" [(ngModel)]="bed.height">
+      </div>
+      <button type="submit" class="btn btn-success btn-block" [disabled]="form.invalid">
+        <fa-icon [icon]="faSave"></fa-icon> Save</button>
+      <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/admin/beds']">
+        <fa-icon [icon]="faBackspace"></fa-icon> Cancel</button>
+    </form>
+  </div>
+</div>

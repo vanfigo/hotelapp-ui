@@ -1,14 +1,30 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light animated fadeIn">
-  <a class="navbar-brand" href="#">
-    <img src="https://png.icons8.com/office/skyscrapers/32" alt="">
+<nav class="navbar navbar-expand-lg navbar-light animated fadeIn sticky-top" style="background-color: #fdcb6e;">
+  <a class="navbar-brand" href="#" [routerLink]="['/dashboard']">
+    <img src="https://png.icons8.com/flat_round/3-star-hotel/32" alt="">
+    HotelApp
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="#"
+            routerLinkActive='active'
+            [routerLink]="['reservation']">Reservation</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+          Administration
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item"
+              routerLinkActive='active'
+              [routerLink]="['admin/beds']">Beds</a>
+          <a class="dropdown-item"
+              routerLinkActive='active'
+              [routerLink]="['admin/rooms']">Rooms</a>
+        </div>
       </li>
     </ul>
     <ul class="navbar-nav" *ngIf="auth.user">

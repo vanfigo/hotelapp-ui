@@ -9,7 +9,7 @@ export const environment = {
     authDomain: "hotelapp-d3916.firebaseapp.com",
     databaseURL: "https://hotelapp-d3916.firebaseio.com",
     projectId: "hotelapp-d3916",
-    storageBucket: "",
+    storageBucket: "hotelapp-d3916.appspot.com",
     messagingSenderId: "395052199852"
   }
 };

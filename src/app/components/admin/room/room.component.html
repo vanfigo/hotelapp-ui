@@ -1,0 +1,55 @@
+<div class="row my-2">
+  <button type="button" class="btn btn-success" [routerLink]="['add']">
+    <fa-icon [icon]="faPlusCircle"></fa-icon> Add a room</button>
+</div>
+<div class="row">
+  <table class="table border table-bordered animated fadeIn">
+    <thead class="thead-dark">
+      <tr class="text-center">
+        <th scope="col">Photos</th>
+        <th scope="col">Beds</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let room of rooms">
+        <td class="w-25">
+          <img src="https://png.icons8.com/office/picture/128" alt="" *ngIf="room.roomPhotos.length === 0"
+                class="mx-auto d-block">
+          <div class="carousel slide carousel-fade" data-ride="carousel" *ngIf="room.roomPhotos.length > 0">
+            <div class="carousel-inner">
+              <div class="carousel-item" [ngClass]="{'active': i === 0}" *ngFor="let photo of room.roomPhotos; let i = index">
+                  <img src="{{photo.url}}" class="rounded mx-auto d-block w-100">
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="room-column-bed">
+          <ul class="list-gruop p-0 m-0">
+            <li class="active list-group-item">
+              <div class="d-flex w-100 justify-content-between align-items-center">
+                <h5 class="m-0 font-weight-bold">{{room.number}}</h5>
+                <span>{{room.cost | price}}</span>
+              </div>
+            </li>
+            <div *ngIf="room.beds.length > 0">
+              <li class="list-group-item" *ngFor="let bed of room.beds">
+                <div class="d-flex w-100 align-items-center">
+                  <h5 class="mb-1 flex-grow-1">{{bed.name}}</h5>
+                  <span class="mx-3">People: <span class="badge badge-warning">{{bed.people}}</span></span>
+                  <small>{{bed.width}}cm x {{bed.height}}cm</small>
+                </div>
+              </li>
+            </div>
+          </ul>
+        </td>
+        <td>
+          <button type="button" class="btn btn-warning btn-block btn-sm" [routerLink]="['edit', room.id]">
+            <fa-icon [icon]="faPencilAlt"></fa-icon> Edit</button>
+          <button type="button" class="btn btn-outline-danger btn-block btn-sm" (click)="delete(room.id)">
+            <fa-icon [icon]="faTrash"></fa-icon> Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

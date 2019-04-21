@@ -1,0 +1,4 @@
+<ul class="list-group" *ngFor="let room of rooms">
+  <li class="list-group-item active">{{room.number}}</li>
+  <li class="list-group-item" *ngFor="let bed of room.beds">{{bed.name}}, people: {{bed.people}}</li>
+</ul>

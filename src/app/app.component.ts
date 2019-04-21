@@ -14,7 +14,6 @@ export class AppComponent {
 
   constructor(private router: Router,
               private auth: FireAuthService) {
-    console.log(this.loading);
     this.auth.afAuth.authState.subscribe(() => this.loading = false);
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd)

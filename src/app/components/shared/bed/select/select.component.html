@@ -1,0 +1,4 @@
+<select class="form-control" required [(ngModel)]="bed" placeholder="Select a Bed" (change)="change()">
+    <option [value]="null">Select a Bed</option>
+    <option *ngFor="let bed of beds" [ngValue]="bed">{{bed.name}}</option>
+  </select>

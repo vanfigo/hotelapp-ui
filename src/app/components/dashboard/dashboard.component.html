@@ -1,3 +1,6 @@
-<p>
-  dashboard works!
-</p>
+<div class="row">
+  <app-loading *ngIf="loading"></app-loading>
+  <ul *ngIf="!loading">
+    <li *ngFor="let reservation of reservations">{{reservation.name}} {{reservation.lastName}} - {{reservation.email}}</li>
+  </ul>
+</div>

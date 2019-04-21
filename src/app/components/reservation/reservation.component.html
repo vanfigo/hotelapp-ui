@@ -1,0 +1,72 @@
+<div class="row my-2">
+  <div class="col-md-4 p-0">
+    <nav class="navbar navbar-dark bg-secondary">
+      <span class="navbar-brand mb-0 h1">Personal information</span>
+    </nav>
+    <form (ngSubmit)="lookUp()" #form="ngForm" class="shadow-sm border rounded p-3 m-2">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter name" required
+                name="name" #name="ngModel" [(ngModel)]="reservation.name">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" id="lastName" placeholder="Enter last name"
+                name="lastName" #lastName="ngModel" [(ngModel)]="reservation.lastName">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter email"
+                name="email" #email="ngModel" [(ngModel)]="reservation.email">
+      </div>
+      <div class="form-group">
+        <label for="startDate">Start Date</label>
+        <input type="date" class="form-control" id="startDate" placeholder="Start Date" required
+                name="startDate" #startDate="ngModel" [(ngModel)]="reservation.startDate">
+      </div>
+      <div class="form-group">
+        <label for="endDate">End Date</label>
+        <input type="date" class="form-control" id="endDate" placeholder="End Date" required
+                name="endDate" #endDate="ngModel" [(ngModel)]="reservation.endDate">
+      </div>
+      <div class="form-group">
+        <label for="people">People</label>
+        <input type="number" class="form-control" id="people" placeholder="Enter people" required
+                name="people" #people="ngModel" [(ngModel)]="reservation.people">
+      </div>
+      <button type="submit" class="btn btn-success btn-block" [disabled]="form.invalid">
+        <fa-icon [icon]="faConciergeBell"></fa-icon> Look up</button>
+    </form>
+  </div>
+  <div class="col-md-8 p-0">
+    <nav class="navbar navbar-dark bg-secondary">
+      <span class="navbar-brand mb-0 h1">Rooms</span>
+    </nav>
+    <h4 class="text-muted text-center m-5" *ngIf="!lookedUp">Look up for some available rooms</h4>
+    <app-loading *ngIf="loading"></app-loading>
+    <table class="table border table-bordered table-hover animated fadeIn" *ngIf="lookedUp && !loading">
+      <thead class="thead-dark">
+        <tr class="text-center">
+          <th scope="col">Information</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let room of roomReservations">
+          <td class="room-column-bed">
+              <div class="d-flex w-100 justify-content-around align-items-center">
+                <h3 class="m-0 font-weight-bold"><span class="badge badge-info">{{room.number}}</span></h3>
+                <p class="m-0">People <span class="badge badge-light align-text-bottom">{{room.peopleTotal}}</span></p>
+                <span class="text-success">{{room.cost | price}}</span>
+              </div>
+          </td>
+          <td>
+            <button type="button" class="btn btn-outline-info btn-block btn-sm" (click)="reserve(room, form)"
+                    [disabled]="form.invalid || reservation.people > room.peopleTotal">
+              <fa-icon [icon]="faMapMarker"></fa-icon> Reserve</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
