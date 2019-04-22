@@ -1,0 +1,11 @@
+.table td, .table th {
+  vertical-align: middle;
+}
+
+.text-dates, .dl-info {
+  font-size: .8em
+}
+
+dl, dd {
+  margin: 0;
+}

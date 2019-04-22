@@ -1,6 +1,5 @@
-import { Component, OnInit, Inject, LOCALE_ID } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { formatDate } from '@angular/common';
 import { Reservation } from '../../interfaces/reservation.interface';
 import { faConciergeBell, faMapMarker } from '@fortawesome/free-solid-svg-icons';
 import { RoomReservationService } from '../../providers/room-reservation.service';
@@ -26,8 +25,7 @@ export class ReservationComponent implements OnInit {
   loading: boolean = false;
 
   constructor(private roomReservationService: RoomReservationService,
-              private reservationService: ReservationService,
-              @Inject(LOCALE_ID) private locale: string) {
+              private reservationService: ReservationService) {
     this.reservation = {
       name: "",
       startDate: null,

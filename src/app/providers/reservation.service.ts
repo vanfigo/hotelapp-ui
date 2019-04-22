@@ -13,6 +13,14 @@ export class ReservationService {
 
   findAll = () => this.http.get(this.url);
 
+  findByStatus = () => this.http.get(`${this.url}/activeStatus`);
+
+  filter = (reservation: Reservation) => this.http.post(`${this.url}/filter`, reservation);
+
   save = (reservation: Reservation) => this.http.post(this.url, reservation);
+
+  checkIn = (id: number) => this.http.put(`${this.url}/${id}/checkIn`, {});
+
+  checkOut = (id: number) => this.http.put(`${this.url}/${id}/checkOut`, {});
 
 }

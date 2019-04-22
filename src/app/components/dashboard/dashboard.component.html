@@ -1,6 +1,71 @@
-<div class="row">
-  <app-loading *ngIf="loading"></app-loading>
-  <ul *ngIf="!loading">
-    <li *ngFor="let reservation of reservations">{{reservation.name}} {{reservation.lastName}} - {{reservation.email}}</li>
-  </ul>
-</div>
+<nav class="navbar navbar-dark bg-secondary mt-2">
+  <span class="navbar-brand mb-0">Search for reservations</span>
+  <form (ngSubmit)="filter()" #form="ngForm">
+    <div class="row justify-content-end">
+      <div class="col-3">
+        <input type="text" class="form-control form-control-sm" placeholder="Search name"
+                name="name" #name="ngModel" [(ngModel)]="reservation.name">
+      </div>
+      <div class="col-3">
+        <input type="email" class="form-control form-control-sm" placeholder="Search email"
+                name="email" #email="ngModel" [(ngModel)]="reservation.email">
+      </div>
+      <div class="col-2">
+        <input type="number" class="form-control form-control-sm" placeholder="Room #" required
+                name="number" #number="ngModel" [(ngModel)]="reservation.room.number">
+      </div>
+      <button class="btn btn-primary btn-sm mr-2" type="submit">
+        <fa-icon [icon]="faSearch"></fa-icon>
+      </button>
+      <button class="btn btn-light btn-sm mr-2" type="button" (click)="clear(form)">
+        <fa-icon [icon]="faBroom"></fa-icon>
+      </button>
+    </div>
+  </form>
+</nav>
+<app-loading *ngIf="loading"></app-loading>
+<table class="table table-bordered table-hover table-sm animated fadeIn" *ngIf="!loading">
+  <thead class="thead-dark">
+    <tr class="text-center">
+      <th>Room</th>
+      <th class="w-25">Customer</th>
+      <th class="w-25">From</th>
+      <th class="w-25">To</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let reservation of reservations">
+      <td>
+        <h3 class="m-0 text-center" data-toggle="tooltip" data-placement="right" title="Poeple: {{reservation.people}}">
+          <span class="badge badge-info">{{reservation.room.number}}</span>
+        </h3>
+      </td>
+      <td>
+        <dl class="row dl-info">
+          <dt class="col-sm-3">Name:</dt>
+          <dd class="col-sm-9">{{reservation.name}} {{reservation.lastName}}</dd>
+          <dt class="col-sm-3">Email:</dt>
+          <dd class="col-sm-9 font-italic">{{reservation.email}}</dd>
+        </dl>
+      </td>
+      <td class="text-monospace text-dates">
+        <img src="https://png.icons8.com/office/calendar-{{reservation.startDate | date: 'd'}}/32" alt="">
+        {{reservation.startDate | date: 'fullDate'}}
+      </td>
+      <td class="text-monospace text-dates">
+        <img src="https://png.icons8.com/office/calendar-{{reservation.endDate | date: 'd'}}/32" alt="">
+        {{reservation.endDate | date: 'fullDate'}}
+      </td>
+      <td class="text-center">
+        <button type="button" *ngIf="isCreated(reservation.status)" class="btn btn-warning btn-block" (click)="checkIn(reservation)">
+          <fa-icon [icon]="faCheckCircle"></fa-icon> Check In
+        </button>
+        <button type="button" *ngIf="!isCreated(reservation.status)" class="btn btn-secondary btn-block" (click)="checkOut(reservation)">
+          <fa-icon [icon]="faStopCircle"></fa-icon> Check Out
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 class="text-muted text-center m-5" *ngIf="!loading && reservations.length === 0">There are no reservations</h4>

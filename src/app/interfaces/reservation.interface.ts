@@ -11,5 +11,7 @@ export interface Reservation {
   startDate: string,
   endDate: string,
   creationDate?: Date,
+  checkInDate?: Date,
+  checkOutDate?: Date,
   status: Status
 }
